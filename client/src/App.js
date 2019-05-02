@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Transactions from "./components/Transaction";
 import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 class App extends Component {
   constructor() {
@@ -18,6 +19,9 @@ class App extends Component {
         }
         {this.state.loggedIn &&
           <Transactions/>
+        }
+        {!this.state.loggedIn &&
+          <SignIn/>
         }
       </div>
     );
