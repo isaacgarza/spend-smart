@@ -81,7 +81,7 @@ class SignUp extends Component {
                 <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}/>
               </Form.Group>
               <Button variant="primary" type="submit">
-                Submit
+                Sign Up
               </Button>
             </Form>
           </Card>
