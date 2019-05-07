@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Transactions from "./components/Transaction";
+import Transactions from "./components/Transactions";
 import SignUp from "./components/SignUp";
+import Goals from "./components/Goals";
 import SignIn from "./components/SignIn";
 
 class App extends Component {
@@ -14,15 +15,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.loggedIn &&
-          <SignUp/>
-        }
-        {this.state.loggedIn &&
-          <Transactions/>
-        }
-        {!this.state.loggedIn &&
-          <SignIn/>
-        }
+        <SignUp/>
+        <Transactions/>
+        <Goals/>
       </div>
     );
   }
