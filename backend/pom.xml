@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spendsmart</groupId>
-	<artifactId>Spend Smart Backend</artifactId>
+	<artifactId>spend-smart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spend Smart Backend</name>
 
@@ -48,6 +48,17 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.plaid</groupId>
+			<artifactId>plaid-java</artifactId>
+			<version>4.0.3</version>
 		</dependency>
 	</dependencies>
 
