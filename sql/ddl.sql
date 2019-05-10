@@ -34,7 +34,6 @@ create table if not exists person
 (
     id binary(16) not null primary key,
     email varchar(255) not null,
-    password int null,
     first_name varchar(65) not null,
     last_name varchar(65) not null,
     phone_number varchar(50) not null,
@@ -65,21 +64,6 @@ create table if not exists expense
             on update cascade,
     constraint expense_person_id_fk
         foreign key (person_id) references person (id)
-            on update cascade on delete cascade
-);
-
-create table if not exists expense_category
-(
-    id binary(16) not null primary key,
-    expense_id binary(16) not null,
-    category_id binary(16) not null,
-    constraint expense_category_id_uindex
-        unique (id),
-    constraint expense_category_category_id_fk
-        foreign key (category_id) references category (id)
-            on update cascade on delete cascade,
-    constraint expense_category_expense_id_fk
-        foreign key (expense_id) references expense (id)
             on update cascade on delete cascade
 );
 
@@ -153,17 +137,28 @@ create table if not exists subcategory
             on update cascade
 );
 
-create table if not exists expense_subcategory
+create table if not exists transaction_category
 (
-    id binary(16) not null primary key,
-    expense_id binary(16) not null,
+    id binary(16) not null
+        primary key,
+    transaction_id varchar(37) not null,
+    category_id binary(16) not null,
+    constraint transaction_category_transaction_id_uindex
+        unique (transaction_id),
+    constraint transaction_category_category_id_fk
+        foreign key (category_id) references category (id)
+            on update cascade on delete cascade
+);
+
+create table if not exists transaction_subcategory
+(
+    id binary(16) not null
+        primary key,
+    transaction_id varchar(37) not null,
     subcategory_id binary(16) not null,
-    constraint expense_subcategory_id_uindex
-        unique (id),
-    constraint expense_subcategory_expense_id_fk
-        foreign key (expense_id) references expense (id)
-            on update cascade on delete cascade,
-    constraint expense_subcategory_subcategory__fk
+    constraint transaction_subcategory_transaction_id_uindex
+        unique (transaction_id),
+    constraint transaction_subcategory_subcategory_id_fk
         foreign key (subcategory_id) references subcategory (id)
             on update cascade on delete cascade
 );
