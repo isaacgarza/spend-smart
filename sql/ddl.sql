@@ -36,22 +36,26 @@ create table if not exists person
     email varchar(255) not null,
     first_name varchar(65) not null,
     last_name varchar(65) not null,
+    age int not null,
     phone_number varchar(50) not null,
     created_timestamp timestamp default CURRENT_TIMESTAMP not null,
     updated_timestamp timestamp default CURRENT_TIMESTAMP not null,
     constraint person_email_uindex
         unique (email),
     constraint person_id_uindex
-        unique (id)
+        unique (id),
+    constraint person_phone_number_uindex
+        unique (phone_number)
 );
 
 create table if not exists expense
 (
     id binary(16) not null primary key,
-    funding_schedule_type_id binary(16) not null,
     person_id binary(16) not null,
+    expense_repeat_schedule_type_id binary(16) not null,
+    funding_schedule_type_id binary(16) not null,
     name varchar(65) not null,
-    targeted_date date not null,
+    repeat_date date not null,
     targeted_amount decimal(13,4) not null,
     saved_amount decimal(13,4) not null,
     fund_date date null,
@@ -59,6 +63,9 @@ create table if not exists expense
     updated_timestamp timestamp default CURRENT_TIMESTAMP not null,
     constraint expense_id_uindex
         unique (id),
+    constraint expense_expense_repeat_schedule_type_id_fk
+        foreign key (expense_repeat_schedule_type_id) references expense_repeat_schedule_type (id)
+            on update cascade,
     constraint expense_funding_schedule_type_id_fk
         foreign key (funding_schedule_type_id) references funding_schedule_type (id)
             on update cascade,
@@ -82,6 +89,16 @@ create table if not exists expense_custom_schedule
     constraint expense_custom_schedule_expense_id_fk
         foreign key (expense_id) references expense (id)
             on update cascade on delete cascade
+);
+
+create table if not exists expense_repeat_schedule_type
+(
+    id binary(16) not null primary key,
+    type varchar(25) not null,
+    constraint expense_repeat_schedule_type_id_uindex
+        unique (id),
+    constraint expense_repeat_schedule_type_type_uindex
+        unique (type)
 );
 
 create table if not exists goal
