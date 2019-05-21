@@ -5,6 +5,15 @@ values (uuid_to_bin('8bdd707e-6d63-11e9-8d1c-ca6496c4120e'), 'DAILY'),
        (uuid_to_bin('8bdd71a0-6d63-11e9-8d1c-ca6496c4120e'), 'MONTHLY'),
        (uuid_to_bin('8bdd6ed0-6d63-11e9-8d1c-ca6496c4120e'), 'CUSTOM');
 
+insert into expense_repeat_schedule_type(id, type)
+values (bin_to_uuid('c199b42e-777d-11e9-8d1c-ca6496c4120e'), 'WEEKLY'),
+       (bin_to_uuid('c199aec0-777d-11e9-8d1c-ca6496c4120e'), 'BI_WEEKLY'),
+       (bin_to_uuid('c199b2f8-777d-11e9-8d1c-ca6496c4120e'), 'MONTHLY'),
+       (bin_to_uuid('c199b730-777d-11e9-8d1c-ca6496c4120e'), 'BI_MONTHLY'),
+       (bin_to_uuid('c199b514-777d-11e9-8d1c-ca6496c4120e'), 'THREE_MONTHS'),
+       (bin_to_uuid('c19923ec-777d-11e9-8d1c-ca6496c4120e'), 'SIX_MONTHS'),
+       (bin_to_uuid('c199b910-777d-11e9-8d1c-ca6496c4120e'), 'YEARLY');
+
 insert into category(id, name)
 values (uuid_to_bin('ec849198-6d6b-11e9-8d1c-ca6496c4120e'), 'Auto & Transport'),
        (uuid_to_bin('ec849616-6d6b-11e9-8d1c-ca6496c4120e'), 'Bills & Utilities'),
