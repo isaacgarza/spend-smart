@@ -52,9 +52,9 @@ public class SubcategoryController {
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity getSubcategoriesByPerson(@PathVariable UUID userId) {
+    public ResponseEntity getSubcategoriesByUser(@PathVariable UUID userId) {
         try {
-            return ResponseEntity.ok().body(cache.getSubcategoriesByPerson(userId));
+            return ResponseEntity.ok().body(cache.getSubcategoriesByUser(userId));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }

@@ -98,13 +98,13 @@ public class Cache {
         return subcategories;
     }
 
-    public Set<Subcategory> getSubcategoriesByPerson(UUID userId) {
+    public Set<Subcategory> getSubcategoriesByUser(UUID userId) {
         try {
             Set<Subcategory> subcategories = getSubcategories();
-            Set<UserSubcategory> personSubcategories = userSubcategoryService.getCustomSubcategories(userId);
-            return combineSubcategories(subcategories, personSubcategories);
+            Set<UserSubcategory> userSubcategories = userSubcategoryService.getCustomSubcategories(userId);
+            return combineSubcategories(subcategories, userSubcategories);
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred retrieving subcategories for person " + userId, e);
+            throw new ServiceException("Exception occurred retrieving subcategories for user " + userId, e);
         }
     }
 
@@ -187,8 +187,8 @@ public class Cache {
     }
 
     private Set<Subcategory> combineSubcategories(Set<Subcategory> subcategories,
-                                                  Set<UserSubcategory> personSubcategories) {
-        personSubcategories.forEach(userSubcategory -> {
+                                                  Set<UserSubcategory> userSubcategories) {
+        userSubcategories.forEach(userSubcategory -> {
             Subcategory subcategory = Subcategory.builder()
                     .id(userSubcategory.getId())
                     .category(userSubcategory.getCategory())

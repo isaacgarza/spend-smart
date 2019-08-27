@@ -37,18 +37,18 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity getPerson(@PathVariable UUID id) {
+    public ResponseEntity getUser(@PathVariable UUID id) {
         try {
-            return ResponseEntity.ok().body(personService.getPersonById(id));
+            return ResponseEntity.ok().body(userService.getUserById(id));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @GetMapping
-    public ResponseEntity getUser() {
+    public ResponseEntity getUsers() {
         try {
-            return ResponseEntity.ok().body(userService.getPeople());
+            return ResponseEntity.ok().body(userService.getUsers());
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
@@ -73,18 +73,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity addPerson(@Valid @RequestBody User user) {
+    public ResponseEntity addUser(@Valid @RequestBody User user) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(userService.addPerson(user));
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(user));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PatchMapping
-    public ResponseEntity updatePerson(@Valid @RequestBody User user) {
+    public ResponseEntity updateUser(@Valid @RequestBody User user) {
         try {
-            userService.updatePerson(user);
+            userService.updateUser(user);
             return ResponseEntity.ok().build();
         } catch (ServiceException e) {
             return updateFailedResponse(e);
@@ -92,9 +92,9 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{userId}")
-    public ResponseEntity deletePerson(@PathVariable UUID userId) {
+    public ResponseEntity deleteUser(@PathVariable UUID userId) {
         try {
-            userService.deletePerson(userId);
+            userService.deleteUser(userId);
             return ResponseEntity.ok().build();
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
@@ -102,7 +102,7 @@ public class UserController {
     }
 
     private ResponseEntity updateFailedResponse(ServiceException e) {
-        if (e.getMessage().equals(ExceptionConstants.PERSON_NOT_FOUND)) {
+        if (e.getMessage().equals(ExceptionConstants.USER_NOT_FOUND)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.badRequest().build();
