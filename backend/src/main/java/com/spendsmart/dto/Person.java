@@ -1,5 +1,6 @@
 package com.spendsmart.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Person implements Serializable {
 
     private static final long serialVersionUID = -5472418598913801305L;

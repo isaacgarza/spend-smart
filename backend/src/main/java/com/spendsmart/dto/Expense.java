@@ -2,6 +2,7 @@ package com.spendsmart.dto;
 
 import com.spendsmart.util.ExpenseRepeatScheduleEnum;
 import com.spendsmart.util.FundingScheduleEnum;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Expense implements Serializable {
 
     private static final long serialVersionUID = 2526986387494638823L;

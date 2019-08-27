@@ -1,5 +1,6 @@
 package com.spendsmart.dto;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class ExpenseRepeatSchedule implements Serializable {
 
     private static final long serialVersionUID = -3430739076786211990L;
