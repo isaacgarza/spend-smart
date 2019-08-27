@@ -17,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Person implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = -5472418598913801305L;
 

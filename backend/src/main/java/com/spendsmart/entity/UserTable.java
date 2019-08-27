@@ -24,7 +24,7 @@ import java.util.UUID;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "person")
-public class PersonTable implements Serializable {
+public class UserTable implements Serializable {
 
     private static final long serialVersionUID = -2204315205023049164L;
 

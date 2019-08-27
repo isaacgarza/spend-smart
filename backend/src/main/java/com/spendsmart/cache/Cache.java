@@ -1,13 +1,13 @@
 package com.spendsmart.cache;
 
 import com.spendsmart.dto.Category;
-import com.spendsmart.dto.PersonSubcategory;
+import com.spendsmart.dto.UserSubcategory;
 import com.spendsmart.dto.Subcategory;
 import com.spendsmart.repository.CategoryRepository;
 import com.spendsmart.repository.ExpenseRepeatScheduleRepository;
 import com.spendsmart.repository.FundingScheduleRepository;
 import com.spendsmart.repository.SubcategoryRepository;
-import com.spendsmart.service.PersonSubcategoryService;
+import com.spendsmart.service.UserSubcategoryService;
 import com.spendsmart.service.ServiceException;
 import com.spendsmart.util.CategoryEnum;
 import com.spendsmart.util.ExceptionConstants;
@@ -31,7 +31,7 @@ public class Cache {
     private final SubcategoryRepository subcategoryRepository;
     private final ExpenseRepeatScheduleRepository expenseRepeatScheduleRepository;
     private final FundingScheduleRepository fundingScheduleRepository;
-    private final PersonSubcategoryService personSubcategoryService;
+    private final UserSubcategoryService userSubcategoryService;
 
     private Map<UUID, Category> categoryMap = new HashMap<>();
     private Map<UUID, Subcategory> subcategoryMap = new HashMap<>();
@@ -42,13 +42,13 @@ public class Cache {
     public Cache(CategoryRepository categoryRepository,
                  SubcategoryRepository subcategoryRepository,
                  ExpenseRepeatScheduleRepository expenseRepeatScheduleRepository,
-                 PersonSubcategoryService personSubcategoryService,
+                 UserSubcategoryService userSubcategoryService,
                  FundingScheduleRepository fundingScheduleRepository) {
         this.categoryRepository = categoryRepository;
         this.subcategoryRepository = subcategoryRepository;
         this.expenseRepeatScheduleRepository = expenseRepeatScheduleRepository;
         this.fundingScheduleRepository = fundingScheduleRepository;
-        this.personSubcategoryService = personSubcategoryService;
+        this.userSubcategoryService = userSubcategoryService;
     }
 
     public Set<Category> getCategories() {
@@ -101,7 +101,7 @@ public class Cache {
     public Set<Subcategory> getSubcategoriesByPerson(UUID userId) {
         try {
             Set<Subcategory> subcategories = getSubcategories();
-            Set<PersonSubcategory> personSubcategories = personSubcategoryService.getCustomSubcategories(userId);
+            Set<UserSubcategory> personSubcategories = userSubcategoryService.getCustomSubcategories(userId);
             return combineSubcategories(subcategories, personSubcategories);
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving subcategories for person " + userId, e);
@@ -187,12 +187,12 @@ public class Cache {
     }
 
     private Set<Subcategory> combineSubcategories(Set<Subcategory> subcategories,
-                                                  Set<PersonSubcategory> personSubcategories) {
-        personSubcategories.forEach(personSubcategory -> {
+                                                  Set<UserSubcategory> personSubcategories) {
+        personSubcategories.forEach(userSubcategory -> {
             Subcategory subcategory = Subcategory.builder()
-                    .id(personSubcategory.getId())
-                    .category(personSubcategory.getCategory())
-                    .name(personSubcategory.getName())
+                    .id(userSubcategory.getId())
+                    .category(userSubcategory.getCategory())
+                    .name(userSubcategory.getName())
                     .build();
             subcategories.add(subcategory);
         });
