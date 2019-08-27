@@ -14,4 +14,6 @@ public interface PersonService {
     void deletePerson(UUID personId);
 
     Set<Person> getPeople();
+
+    Person getPersonById(UUID id);
 }
