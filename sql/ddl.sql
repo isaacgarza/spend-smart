@@ -30,7 +30,7 @@ create table if not exists funding_schedule_type
         unique (type)
 );
 
-create table if not exists person
+create table if not exists user
 (
     id binary(16) not null primary key,
     email varchar(255) not null,
@@ -40,18 +40,18 @@ create table if not exists person
     phone_number varchar(50) not null,
     created_timestamp timestamp default CURRENT_TIMESTAMP not null,
     updated_timestamp timestamp default CURRENT_TIMESTAMP not null,
-    constraint person_email_uindex
+    constraint user_email_uindex
         unique (email),
-    constraint person_id_uindex
+    constraint user_id_uindex
         unique (id),
-    constraint person_phone_number_uindex
+    constraint user_phone_number_uindex
         unique (phone_number)
 );
 
 create table if not exists expense
 (
     id binary(16) not null primary key,
-    person_id binary(16) not null,
+    user_id binary(16) not null,
     expense_repeat_schedule_type_id binary(16) not null,
     funding_schedule_type_id binary(16) not null,
     name varchar(65) not null,
@@ -69,8 +69,8 @@ create table if not exists expense
     constraint expense_funding_schedule_type_id_fk
         foreign key (funding_schedule_type_id) references funding_schedule_type (id)
             on update cascade,
-    constraint expense_person_id_fk
-        foreign key (person_id) references person (id)
+    constraint expense_user_id_fk
+        foreign key (user_id) references user (id)
             on update cascade on delete cascade
 );
 
@@ -104,7 +104,7 @@ create table if not exists expense_repeat_schedule_type
 create table if not exists goal
 (
     id binary(16) not null primary key,
-    person_id binary(16) not null,
+    user_id binary(16) not null,
     funding_schedule_type_id binary(16) not null,
     name varchar(65) not null,
     targeted_date date not null,
@@ -118,8 +118,8 @@ create table if not exists goal
     constraint goal_funding_schedule_type_id_fk
         foreign key (funding_schedule_type_id) references funding_schedule_type (id)
             on update cascade,
-    constraint goal_person_id_fk
-        foreign key (person_id) references person (id)
+    constraint goal_user_id_fk
+        foreign key (user_id) references user (id)
             on update cascade on delete cascade
 );
 
