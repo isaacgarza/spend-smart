@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface UserService {
 
-    User addPerson(User user);
+    User addUser(User user);
 
-    void updatePerson(User user);
+    void updateUser(User user);
 
-    void deletePerson(UUID userId);
+    void deleteUser(UUID userId);
 
-    Set<User> getPeople();
+    Set<User> getUsers();
 
-    User getPersonById(UUID id);
+    User getUserById(UUID id);
 }

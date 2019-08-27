@@ -19,7 +19,7 @@ import java.util.UUID;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "person_subcategory")
+@Table(name = "user_subcategory")
 public class UserSubcategoryTable implements Serializable {
 
     private static final long serialVersionUID = 8079578623609092294L;

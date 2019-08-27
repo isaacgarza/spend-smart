@@ -71,7 +71,7 @@ public class GoalServiceImpl implements GoalService {
     @Transactional(readOnly = true)
     public Set<Goal> getGoals(UUID userId) {
         try {
-            return mapGoalTableListToGoals(goalRepository.findAllByPersonId(userId));
+            return mapGoalTableListToGoals(goalRepository.findAllByUserId(userId));
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving goals for " + userId, e);
         }

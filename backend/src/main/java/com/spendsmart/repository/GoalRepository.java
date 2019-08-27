@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface GoalRepository extends JpaRepository<GoalTable, UUID> {
-    Set<GoalTable> findAllByPersonId(UUID userId);
+    Set<GoalTable> findAllByUserId(UUID userId);
 }

@@ -33,75 +33,76 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public User addPerson(User user) {
-        UserTable userTable = mapPersonToTable(user);
+    public User addUser(User user) {
+        UserTable userTable = mapUserToTable(user);
         save(userTable);
         user.setId(userTable.getId());
         return user;
     }
 
     @Transactional
-    public void updatePerson(User user) {
-        UserTable newUserTable = mapPersonToTable(user);
-        Optional<UserTable> personTable = userRepository.findById(user.getId());
-        if (personTable.isPresent()) {
-            ServiceUtil.copyNonNullProperties(newUserTable, personTable.get());
-            save(personTable.get());
+    public void updateUser(User user) {
+        UserTable newUserTable = mapUserToTable(user);
+        Optional<UserTable> userTable = userRepository.findById(user.getId());
+        if (userTable.isPresent()) {
+            ServiceUtil.copyNonNullProperties(newUserTable, userTable.get());
+            save(userTable.get());
         } else {
-            throw new ServiceException(ExceptionConstants.PERSON_NOT_FOUND);
+            throw new ServiceException(ExceptionConstants.USER_NOT_FOUND);
         }
     }
 
     @Transactional
-    public void deletePerson(UUID userId) {
+    public void deleteUser(UUID userId) {
         try {
             userRepository.deleteById(userId);
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred deleting person", e);
+            throw new ServiceException("Exception occurred deleting user", e);
         }
     }
 
     @Transactional(readOnly = true)
-    public Set<User> getPeople() {
+    public Set<User> getUsers() {
         try {
-             return mapPersonTableListToPeople(userRepository.findAll());
+             return mapUserTableListToUsers(userRepository.findAll());
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred retrieving set of people", e);
+            throw new ServiceException("Exception occurred retrieving set of users", e);
         }
     }
 
     @Transactional(readOnly = true)
-    public User getPersonById(UUID id) {
+    public User getUserById(UUID id) {
         try {
-            return mapTableToPerson(userRepository.findById(id));
+            return mapTableToUser(id);
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred retrieving person by id", e);
+            throw new ServiceException("Exception occurred retrieving user by id", e);
         }
     }
 
-    private User mapTableToPerson(Optional<UserTable> personTable) {
-        if (personTable.isPresent()) {
-            return jacksonObjectMapper.convertValue(personTable, User.class);
+    private User mapTableToUser(UUID id) {
+        Optional<UserTable> userTable = userRepository.findById(id);
+        if (userTable.isPresent()) {
+            return jacksonObjectMapper.convertValue(userTable, User.class);
         } else {
-            throw new ServiceException("Person not found");
+            throw new ServiceException("User not found");
         }
     }
 
-    private UserTable mapPersonToTable(User user) {
+    private UserTable mapUserToTable(User user) {
         return jacksonObjectMapper.convertValue(user, UserTable.class);
     }
 
-    private Set<User> mapPersonTableListToPeople(List<UserTable> userTableList) {
-        Set<User> people = new HashSet<>();
-        userTableList.forEach(userTable -> people.add(jacksonObjectMapper.convertValue(userTable, User.class)));
-        return people;
+    private Set<User> mapUserTableListToUsers(List<UserTable> userTableList) {
+        Set<User> users = new HashSet<>();
+        userTableList.forEach(userTable -> users.add(jacksonObjectMapper.convertValue(userTable, User.class)));
+        return users;
     }
 
     private void save(UserTable userTable) {
         try {
             userRepository.save(userTable);
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred adding/updating person", e);
+            throw new ServiceException("Exception occurred adding/updating user", e);
         }
     }
 }

@@ -50,23 +50,23 @@ public class UserSubcategoryServiceImpl implements UserSubcategoryService {
     @Transactional(readOnly = true)
     public Set<UserSubcategory> getCustomSubcategories(UUID userId) {
         try {
-            return mapPersonSubcategoryTableListToPersonSubcategories(userSubcategoryRepository.findAllByPersonId(userId));
+            return mapUserSubcategoryTableListToUserSubcategories(userSubcategoryRepository.findAllByUserId(userId));
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving subcategories", e);
         }
     }
 
-    private Set<UserSubcategory> mapPersonSubcategoryTableListToPersonSubcategories(
+    private Set<UserSubcategory> mapUserSubcategoryTableListToUserSubcategories(
             Set<UserSubcategoryTable> userSubcategoryTableList) {
-        Set<UserSubcategory> personSubcategories = new HashSet<>();
+        Set<UserSubcategory> userSubcategories = new HashSet<>();
         userSubcategoryTableList.forEach(userSubcategoryTable -> {
             UserSubcategory userSubcategory =
                     jacksonObjectMapper.convertValue(userSubcategoryTable, UserSubcategory.class);
             Category category = getCategoryById(userSubcategoryTable.getCategoryId());
             userSubcategory.setCategory(category);
-            personSubcategories.add(userSubcategory);
+            userSubcategories.add(userSubcategory);
         });
-        return personSubcategories;
+        return userSubcategories;
     }
 
     private void save(UserSubcategory userSubcategory, UserSubcategoryTable userSubcategoryTable) {
