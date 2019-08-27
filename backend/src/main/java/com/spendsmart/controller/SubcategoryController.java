@@ -1,8 +1,8 @@
 package com.spendsmart.controller;
 
 import com.spendsmart.cache.Cache;
-import com.spendsmart.dto.PersonSubcategory;
-import com.spendsmart.service.PersonSubcategoryService;
+import com.spendsmart.dto.UserSubcategory;
+import com.spendsmart.service.UserSubcategoryService;
 import com.spendsmart.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,21 +22,21 @@ import java.util.UUID;
 public class SubcategoryController {
 
     private final Cache cache;
-    private final PersonSubcategoryService personSubcategoryService;
+    private final UserSubcategoryService userSubcategoryService;
 
     @Autowired
     public SubcategoryController(Cache cache,
-                                 PersonSubcategoryService personSubcategoryService) {
+                                 UserSubcategoryService userSubcategoryService) {
         this.cache = cache;
-        this.personSubcategoryService = personSubcategoryService;
+        this.userSubcategoryService = userSubcategoryService;
     }
 
     @PostMapping
-    public ResponseEntity addCustomSubcategory(@Valid @RequestBody PersonSubcategory personSubcategory) {
+    public ResponseEntity addCustomSubcategory(@Valid @RequestBody UserSubcategory userSubcategory) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(personSubcategoryService.addCustomSubcategory(personSubcategory));
+                    .body(userSubcategoryService.addCustomSubcategory(userSubcategory));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }

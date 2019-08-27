@@ -25,7 +25,7 @@ public class Expense implements Serializable {
 
     private UUID id;
 
-    @NotNull(message = "Person id is mandatory")
+    @NotNull(message = "User id is mandatory")
     private UUID userId;
 
     @NotNull(message = "Expense repeat schedule type is mandatory")

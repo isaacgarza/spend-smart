@@ -14,13 +14,13 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PersonSubcategory implements Serializable {
+public class UserSubcategory implements Serializable {
 
     private static final long serialVersionUID = 1523056740114465700L;
 
     private UUID id;
 
-    @NotNull(message = "Person id is mandatory")
+    @NotNull(message = "User id is mandatory")
     private UUID userId;
 
     @NotNull(message = "Category is mandatory")

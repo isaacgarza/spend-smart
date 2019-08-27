@@ -1,9 +1,9 @@
 package com.spendsmart.controller;
 
-import com.spendsmart.dto.Person;
+import com.spendsmart.dto.User;
 import com.spendsmart.service.ExpenseService;
 import com.spendsmart.service.GoalService;
-import com.spendsmart.service.PersonService;
+import com.spendsmart.service.UserService;
 import com.spendsmart.service.ServiceException;
 import com.spendsmart.util.ExceptionConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,13 @@ import java.util.UUID;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    private final PersonService personService;
+    private final UserService userService;
     private final ExpenseService expenseService;
     private final GoalService goalService;
 
     @Autowired
-    public UserController(PersonService personService, ExpenseService expenseService, GoalService goalService) {
-        this.personService = personService;
+    public UserController(UserService userService, ExpenseService expenseService, GoalService goalService) {
+        this.userService = userService;
         this.expenseService = expenseService;
         this.goalService = goalService;
     }
@@ -46,9 +46,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity getPeople() {
+    public ResponseEntity getUser() {
         try {
-            return ResponseEntity.ok().body(personService.getPeople());
+            return ResponseEntity.ok().body(userService.getPeople());
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
@@ -73,18 +73,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity addPerson(@Valid @RequestBody Person person) {
+    public ResponseEntity addPerson(@Valid @RequestBody User user) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(personService.addPerson(person));
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.addPerson(user));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PatchMapping
-    public ResponseEntity updatePerson(@Valid @RequestBody Person person) {
+    public ResponseEntity updatePerson(@Valid @RequestBody User user) {
         try {
-            personService.updatePerson(person);
+            userService.updatePerson(user);
             return ResponseEntity.ok().build();
         } catch (ServiceException e) {
             return updateFailedResponse(e);
@@ -94,7 +94,7 @@ public class UserController {
     @DeleteMapping(value = "/{userId}")
     public ResponseEntity deletePerson(@PathVariable UUID userId) {
         try {
-            personService.deletePerson(userId);
+            userService.deletePerson(userId);
             return ResponseEntity.ok().build();
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
