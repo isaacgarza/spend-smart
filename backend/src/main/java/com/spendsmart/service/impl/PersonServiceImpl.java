@@ -64,9 +64,26 @@ public class PersonServiceImpl implements PersonService {
     @Transactional(readOnly = true)
     public Set<Person> getPeople() {
         try {
-             return mapPersonTableListToPeople(personRepository.findAll());
+            return mapPersonTableListToPeople(personRepository.findAll());
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving set of people", e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Person getPersonById(UUID id) {
+        try {
+            return mapTableToPerson(personRepository.findById(id));
+        } catch (Exception e) {
+            throw new ServiceException("Exception occurred retrieving person by id", e);
+        }
+    }
+
+    private Person mapTableToPerson(Optional<PersonTable> personTable) {
+        if (personTable.isPresent()) {
+            return jacksonObjectMapper.convertValue(personTable, Person.class);
+        } else {
+            throw new ServiceException("Person not found");
         }
     }
 

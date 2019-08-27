@@ -36,6 +36,15 @@ public class PersonController {
         this.goalService = goalService;
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity getPerson(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok().body(personService.getPersonById(id));
+        } catch (ServiceException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @GetMapping
     public ResponseEntity getPeople() {
         try {
