@@ -1,6 +1,7 @@
 package com.spendsmart.dto;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Category implements Serializable {
 
     private static final long serialVersionUID = -3157143185803008162L;

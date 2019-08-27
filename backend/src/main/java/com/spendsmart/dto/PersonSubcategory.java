@@ -1,6 +1,7 @@
 package com.spendsmart.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonSubcategory implements Serializable {
 
