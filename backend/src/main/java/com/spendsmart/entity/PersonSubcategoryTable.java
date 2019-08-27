@@ -31,7 +31,7 @@ public class PersonSubcategoryTable implements Serializable {
     private UUID id;
 
     @Column(nullable = false, updatable = false)
-    private UUID personId;
+    private UUID userId;
 
     @Column(nullable = false)
     private UUID categoryId;

@@ -39,7 +39,7 @@ public class GoalTable implements Serializable {
     private UUID fundingScheduleTypeId;
 
     @Column(nullable = false)
-    private UUID personId;
+    private UUID userId;
 
     @Column(length = 65, nullable = false)
     private String name;

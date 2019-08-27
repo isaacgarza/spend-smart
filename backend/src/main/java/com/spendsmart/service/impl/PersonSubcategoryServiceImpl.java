@@ -47,9 +47,9 @@ public class PersonSubcategoryServiceImpl implements PersonSubcategoryService {
     }
 
     @Transactional(readOnly = true)
-    public Set<PersonSubcategory> getCustomSubcategories(UUID personId) {
+    public Set<PersonSubcategory> getCustomSubcategories(UUID userId) {
         try {
-            return mapPersonSubcategoryTableListToPersonSubcategories(personSubcategoryRepository.findAllByPersonId(personId));
+            return mapPersonSubcategoryTableListToPersonSubcategories(personSubcategoryRepository.findAllByPersonId(userId));
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving subcategories", e);
         }

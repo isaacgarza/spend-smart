@@ -21,7 +21,7 @@ public class PersonSubcategory implements Serializable {
     private UUID id;
 
     @NotNull(message = "Person id is mandatory")
-    private UUID personId;
+    private UUID userId;
 
     @NotNull(message = "Category is mandatory")
     private Category category;

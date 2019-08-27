@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface PersonSubcategoryRepository extends JpaRepository<PersonSubcategoryTable, UUID> {
-    Set<PersonSubcategoryTable> findAllByPersonId(UUID personId);
+    Set<PersonSubcategoryTable> findAllByPersonId(UUID userId);
 }

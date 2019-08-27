@@ -11,7 +11,7 @@ public interface PersonService {
 
     void updatePerson(Person person);
 
-    void deletePerson(UUID personId);
+    void deletePerson(UUID userId);
 
     Set<Person> getPeople();
 

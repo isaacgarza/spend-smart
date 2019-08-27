@@ -26,7 +26,7 @@ public class Goal implements Serializable {
     private UUID id;
 
     @NotNull(message = "Person id is mandatory")
-    private UUID personId;
+    private UUID userId;
 
     @NotNull(message = "Funding schedule type is mandatory")
     private FundingScheduleEnum fundingScheduleType;

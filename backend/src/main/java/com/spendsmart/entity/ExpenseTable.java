@@ -36,7 +36,7 @@ public class ExpenseTable implements Serializable {
     private UUID id;
 
     @Column(nullable = false)
-    private UUID personId;
+    private UUID userId;
 
     @Column(nullable = false)
     private UUID expenseRepeatScheduleTypeId;
