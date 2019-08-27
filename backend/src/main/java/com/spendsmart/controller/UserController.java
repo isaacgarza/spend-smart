@@ -54,19 +54,19 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/expenses/{personId}")
-    public ResponseEntity getExpenses(@PathVariable UUID personId) {
+    @GetMapping(value = "/expenses/{userId}")
+    public ResponseEntity getExpenses(@PathVariable UUID userId) {
         try {
-            return ResponseEntity.ok().body(expenseService.getExpenses(personId));
+            return ResponseEntity.ok().body(expenseService.getExpenses(userId));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @GetMapping(value = "/goals/{personId}")
-    public ResponseEntity getGoals(@PathVariable UUID personId) {
+    @GetMapping(value = "/goals/{userId}")
+    public ResponseEntity getGoals(@PathVariable UUID userId) {
         try {
-            return ResponseEntity.ok().body(goalService.getGoals(personId));
+            return ResponseEntity.ok().body(goalService.getGoals(userId));
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();
         }
@@ -91,10 +91,10 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(value = "/{personId}")
-    public ResponseEntity deletePerson(@PathVariable UUID personId) {
+    @DeleteMapping(value = "/{userId}")
+    public ResponseEntity deletePerson(@PathVariable UUID userId) {
         try {
-            personService.deletePerson(personId);
+            personService.deletePerson(userId);
             return ResponseEntity.ok().build();
         } catch (ServiceException e) {
             return ResponseEntity.badRequest().build();

@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<ExpenseTable, UUID> {
-    Set<ExpenseTable> findAllByPersonId(UUID personId);
+    Set<ExpenseTable> findAllByPersonId(UUID userId);
 }

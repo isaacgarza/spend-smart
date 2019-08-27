@@ -68,11 +68,11 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Transactional(readOnly = true)
-    public Set<Expense> getExpenses(UUID personId) {
+    public Set<Expense> getExpenses(UUID userId) {
         try {
-            return mapExpenseTableListToExpenses(expenseRepository.findAllByPersonId(personId));
+            return mapExpenseTableListToExpenses(expenseRepository.findAllByPersonId(userId));
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred retrieving expenses for " + personId, e);
+            throw new ServiceException("Exception occurred retrieving expenses for " + userId, e);
         }
     }
 

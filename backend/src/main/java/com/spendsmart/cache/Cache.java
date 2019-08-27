@@ -98,13 +98,13 @@ public class Cache {
         return subcategories;
     }
 
-    public Set<Subcategory> getSubcategoriesByPerson(UUID personId) {
+    public Set<Subcategory> getSubcategoriesByPerson(UUID userId) {
         try {
             Set<Subcategory> subcategories = getSubcategories();
-            Set<PersonSubcategory> personSubcategories = personSubcategoryService.getCustomSubcategories(personId);
+            Set<PersonSubcategory> personSubcategories = personSubcategoryService.getCustomSubcategories(userId);
             return combineSubcategories(subcategories, personSubcategories);
         } catch (Exception e) {
-            throw new ServiceException("Exception occurred retrieving subcategories for person " + personId, e);
+            throw new ServiceException("Exception occurred retrieving subcategories for person " + userId, e);
         }
     }
 

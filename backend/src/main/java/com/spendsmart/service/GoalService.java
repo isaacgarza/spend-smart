@@ -13,5 +13,5 @@ public interface GoalService {
 
     void deleteGoal(UUID goalId);
 
-    Set<Goal> getGoals(UUID personId);
+    Set<Goal> getGoals(UUID userId);
 }

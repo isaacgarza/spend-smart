@@ -13,5 +13,5 @@ public interface ExpenseService {
 
     void deleteExpense(UUID expenseId);
 
-    Set<Expense> getExpenses(UUID personId);
+    Set<Expense> getExpenses(UUID userId);
 }

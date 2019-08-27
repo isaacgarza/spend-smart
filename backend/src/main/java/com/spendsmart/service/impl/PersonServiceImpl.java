@@ -53,9 +53,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Transactional
-    public void deletePerson(UUID personId) {
+    public void deletePerson(UUID userId) {
         try {
-            personRepository.deleteById(personId);
+            personRepository.deleteById(userId);
         } catch (Exception e) {
             throw new ServiceException("Exception occurred deleting person", e);
         }

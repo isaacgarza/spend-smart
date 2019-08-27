@@ -9,5 +9,5 @@ public interface PersonSubcategoryService {
 
     PersonSubcategory addCustomSubcategory(PersonSubcategory personSubcategory);
 
-    Set<PersonSubcategory> getCustomSubcategories(UUID personId);
+    Set<PersonSubcategory> getCustomSubcategories(UUID userId);
 }
