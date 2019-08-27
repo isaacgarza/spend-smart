@@ -22,15 +22,15 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
-@RequestMapping(value = "/person")
-public class PersonController {
+@RequestMapping(value = "/user")
+public class UserController {
 
     private final PersonService personService;
     private final ExpenseService expenseService;
     private final GoalService goalService;
 
     @Autowired
-    public PersonController(PersonService personService, ExpenseService expenseService, GoalService goalService) {
+    public UserController(PersonService personService, ExpenseService expenseService, GoalService goalService) {
         this.personService = personService;
         this.expenseService = expenseService;
         this.goalService = goalService;
