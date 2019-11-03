@@ -6,12 +6,12 @@ import SignIn from "./components/SignIn";
 
 const AppRoutes = () => {
   return (
-    //The main routes that can be access through header
+    // The main routes that will be added to the header must be added here
     //and home page has to be added here
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/signin" component={SignIn} />
+      <Route path="/sign-up" component={SignUp} />
+      <Route path="/sign-in" component={SignIn} />
     </Switch>
   );
 };
