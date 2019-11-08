@@ -73,19 +73,31 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public User getUserById(UUID id) {
         try {
-            return mapTableToUser(id);
+            return mapTableToUserById(id);
         } catch (Exception e) {
             throw new ServiceException("Exception occurred retrieving user by id", e);
         }
     }
 
-    private User mapTableToUser(UUID id) {
-        Optional<UserTable> userTable = userRepository.findById(id);
-        if (userTable.isPresent()) {
-            return jacksonObjectMapper.convertValue(userTable, User.class);
-        } else {
-            throw new ServiceException("User not found");
+    @Transactional(readOnly = true)
+    public User getUserByEmail(String email) {
+        try {
+            return mapTableToUserByEmail(email);
+        } catch (Exception e) {
+            throw new ServiceException("Exception occurred retrieving user by id", e);
         }
+    }
+
+    private User mapTableToUserById(UUID id) {
+        UserTable userTable = userRepository
+                .findById(id)
+                .orElseThrow(() -> new ServiceException("User not found"));
+        return jacksonObjectMapper.convertValue(userTable, User.class);
+    }
+
+    private User mapTableToUserByEmail(String email) {
+        UserTable userTable = userRepository.findByEmail(email).orElse(UserTable.builder().build());
+        return jacksonObjectMapper.convertValue(userTable, User.class);
     }
 
     private UserTable mapUserToTable(User user) {
