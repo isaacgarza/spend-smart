@@ -1,6 +1,9 @@
 package com.spendsmart.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -18,8 +21,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -38,17 +44,29 @@ public class UserTable implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private Boolean emailVerified = false;
+
     @Column(length = 65, nullable = false)
     private String firstName;
 
-    @Column(length = 65, nullable = false)
+    @Column(length = 65)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column
     private int age;
 
-    @Column(unique = true, length = 50, nullable = false)
+    @Column(unique = true, length = 50)
     private String phoneNumber;
+
+    @Column
+    private String imageUrl;
+
+    @Column(nullable = false)
+    private String provider;
+
+    @Column(nullable = false, length = 30)
+    private String providerId;
 
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
