@@ -14,11 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class PlaidConfiguration {
 
     private String clientId;
-
     private String secret;
-
     private String publicKey;
-
     private String env;
 
     @Bean
