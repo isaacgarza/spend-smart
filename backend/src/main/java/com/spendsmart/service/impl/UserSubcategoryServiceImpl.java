@@ -8,7 +8,6 @@ import com.spendsmart.entity.CategoryTable;
 import com.spendsmart.entity.UserSubcategoryTable;
 import com.spendsmart.repository.CategoryRepository;
 import com.spendsmart.repository.UserSubcategoryRepository;
-import com.spendsmart.service.UserSubcategoryService;
 import com.spendsmart.service.ServiceException;
 import com.spendsmart.service.UserSubcategoryService;
 import com.spendsmart.util.ExceptionConstants;

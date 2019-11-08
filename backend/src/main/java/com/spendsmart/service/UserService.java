@@ -15,5 +15,7 @@ public interface UserService {
 
     Set<User> getUsers();
 
-    User getUserById(UUID id);
+    User getUserById(UUID userId);
+
+    User getUserByEmail(String email);
 }
