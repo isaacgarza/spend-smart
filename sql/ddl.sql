@@ -34,10 +34,14 @@ create table if not exists user
 (
     id binary(16) not null primary key,
     email varchar(255) not null,
+    email_verified boolean not null default false,
     first_name varchar(65) not null,
     last_name varchar(65) not null,
-    age int not null,
-    phone_number varchar(50) not null,
+    age int null,
+    phone_number varchar(50) null,
+    provider varchar(50) not null,
+    provider_id varchar(30) not null,
+    image_url varchar(100),
     created_timestamp timestamp default CURRENT_TIMESTAMP not null,
     updated_timestamp timestamp default CURRENT_TIMESTAMP not null,
     constraint user_email_uindex
@@ -46,6 +50,16 @@ create table if not exists user
         unique (id),
     constraint user_phone_number_uindex
         unique (phone_number)
+);
+
+create table if not exists expense_repeat_schedule_type
+(
+    id binary(16) not null primary key,
+    type varchar(25) not null,
+    constraint expense_repeat_schedule_type_id_uindex
+        unique (id),
+    constraint expense_repeat_schedule_type_type_uindex
+        unique (type)
 );
 
 create table if not exists expense
@@ -89,16 +103,6 @@ create table if not exists expense_custom_schedule
     constraint expense_custom_schedule_expense_id_fk
         foreign key (expense_id) references expense (id)
             on update cascade on delete cascade
-);
-
-create table if not exists expense_repeat_schedule_type
-(
-    id binary(16) not null primary key,
-    type varchar(25) not null,
-    constraint expense_repeat_schedule_type_id_uindex
-        unique (id),
-    constraint expense_repeat_schedule_type_type_uindex
-        unique (type)
 );
 
 create table if not exists goal
