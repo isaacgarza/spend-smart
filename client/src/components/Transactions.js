@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+// @flow
+import React from 'react';
 import Table from "react-bootstrap/Table";
+import axios from 'axios';
 
-const axios = require('axios');
-
-class Transactions extends Component {
+class Transactions extends React.Component {
 
     constructor(props) {
         super(props);
