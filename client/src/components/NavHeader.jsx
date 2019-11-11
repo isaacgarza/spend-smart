@@ -17,10 +17,10 @@ export default function NavHeader() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link>
-            <Link to="/signin">Sign In</Link>
+            <Link to="/sign-in">Sign In</Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/sign-up">Sign Up</Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
